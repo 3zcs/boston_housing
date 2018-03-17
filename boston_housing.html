@@ -8451,15 +8451,15 @@ label {
 }
 /* Flexible box model classes */
 /* Taken from Alex Russell http://infrequently.org/2009/08/css-3-progress/ */
-/* This file is a compatability layer.  It allows the usage of flexible box 
+/* This file is a compatability layer.  It allows the usage of flexible box
 model layouts accross multiple browsers, including older browsers.  The newest,
 universal implementation of the flexible box model is used when available (see
-`Modern browsers` comments below).  Browsers that are known to implement this 
+`Modern browsers` comments below).  Browsers that are known to implement this
 new spec completely include:
 
     Firefox 28.0+
     Chrome 29.0+
-    Internet Explorer 11+ 
+    Internet Explorer 11+
     Opera 17.0+
 
 Browsers not listed, including Safari, are supported via the styling under the
@@ -11233,7 +11233,7 @@ div#pager .ui-resizable-handle {
   background: #f7f7f7;
   border-top: 1px solid #cfcfcf;
   border-bottom: 1px solid #cfcfcf;
-  /* This injects handle bars (a short, wide = symbol) for 
+  /* This injects handle bars (a short, wide = symbol) for
         the resize handle. */
 }
 div#pager .ui-resizable-handle::after {
@@ -11676,7 +11676,7 @@ ul.typeahead-list > li > a {
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
-    
+
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
 .ansi-black-fg { color: #3E424D; }
 .ansi-black-bg { background-color: #3E424D; }
@@ -11730,14 +11730,14 @@ div#notebook {
   div.cell {
     display: block;
     page-break-inside: avoid;
-  } 
-  div.output_wrapper { 
-    display: block;
-    page-break-inside: avoid; 
   }
-  div.output { 
+  div.output_wrapper {
     display: block;
-    page-break-inside: avoid; 
+    page-break-inside: avoid;
+  }
+  div.output {
+    display: block;
+    page-break-inside: avoid;
   }
 }
 </style>
@@ -11820,7 +11820,7 @@ div#notebook {
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;housing.csv&#39;</span><span class="p">)</span>
 <span class="n">prices</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span>
 <span class="n">features</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;MEDV&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-    
+
 <span class="c1"># Success</span>
 <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Boston housing dataset has </span><span class="si">{}</span><span class="s2"> data points with </span><span class="si">{}</span><span class="s2"> variables each.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
 </pre></div>
@@ -12016,10 +12016,10 @@ Standard deviation of prices: $165,171.13
 <span class="k">def</span> <span class="nf">performance_metric</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_predict</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Calculates and returns the performance score between </span>
 <span class="sd">        true and predicted values based on the metric chosen. &quot;&quot;&quot;</span>
-    
+
     <span class="c1"># TODO: Calculate the performance score between &#39;y_true&#39; and &#39;y_predict&#39;</span>
     <span class="n">score</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="n">y_predict</span><span class="p">)</span>
-    
+
     <span class="c1"># Return the score</span>
     <span class="k">return</span> <span class="n">score</span>
 </pre></div>
@@ -12205,10 +12205,7 @@ As the model has a coefficient of determination, R^2, of 0.923, that means the m
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-The benefits to splitting a dataset into some ratio of training and testing subsets for a learning algorithm</p>
-<ul>
-<li>To Limit problems like overfitting and underfitting, if we use all data as training that will lead to overfitting problem since we'll be very spcific, So, we can use 75% as training and 25% as optimizing, but here come up that quation which 75% of my data should I use, the solation is easy we can change the 25% of our data each time then take the average but what about unseen data?, So, we can use 20% of our data as testing and divieded the rest into 25% optimization, and 75% training then we can change the 25% of our data each time , as you can see we come up with a model more accurate, and we avoid overfitting also we reduce variability.</li>
-</ul>
+The benefits to splitting a dataset into some ratio of training and testing subsets is that we can use some of our data that nuseen from the model to validate how our is good, let's assume that we build out model without testing set, and we optimize our model until it's seemes perfect for this data set, this model will be overfitting, because it's work perfectly with this data, but it's not generalize, how can I make it generalize here the binfits of testing data, if I have unseen data when I optimize my model I use it to see how my model is good.</p>
 
 </div>
 </div>
@@ -12289,7 +12286,7 @@ Think about the pros and cons of adding more training points based on if the tra
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-The graphs of <code>max_depth = 3</code>, when we add more training points the training curve will have small increasing error, and the testing curve will have to decrease in testing error until they have lower converge point and small error. 
+The graphs of <code>max_depth = 3</code>, when we add more training points the training curve will have small increasing error, and the testing curve will have to decrease in testing error until they have lower converge point and small error.
 normally by adding more training points the chances of overfitting decrease and because the model becomes more general, for this model I think we'll continue to get a little converge and diverge point since when the number of training points reach 300 we about to get small effect each time.</p>
 
 </div>
@@ -12421,7 +12418,7 @@ normally by adding more training points the chances of overfitting decrease and 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-grid search technique is that technique used to evaluate different models(different parameters) you have and help you to select the best one. 
+grid search technique is that technique used to evaluate different models(different parameters) you have and help you to select the best one.
 it can be applied to optimize a learning algorithm since you get a feedback for your models, and then find the best hyperparameters to optimize the algorithm.
 it takes an estimator (a regressor or a classifier), a parameter space (a dictionary of hyperparameters that contain parameter names with array of values to try), a method for searching or sampling candidates, cross-validation scheme; and a score function. then we'll get a best estimator which has the 'best' combination of given parameters.
 as we can see we use gridSearch to tune hyper-parameters.</p>
@@ -12450,7 +12447,7 @@ as we can see we use gridSearch to tune hyper-parameters.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-k-fold cross-validation training technique is that technique break our data to K buckets, then we use 1 fold as cross-validation and k-1 fold as training data, and each time we use different buckets as a testing set then we get the average as a final result for the model. 
+k-fold cross-validation training technique is that technique break our data to K buckets, then we use 1 fold as cross-validation and k-1 fold as training data, and each time we use different buckets as a testing set then we get the average as a final result for the model.
 The benefit of this technique helps us to identify whether out model is generalized to an independent data set, also we can estimate how accurate our model is by validating the predicted result, another thing that recycling our data in this technique help us avoid throwing some useful data while we separate or data as into validation and training sets.</p>
 
 </div>
@@ -12497,7 +12494,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
 <span class="k">def</span> <span class="nf">fit_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Performs grid search over the &#39;max_depth&#39; parameter for a </span>
 <span class="sd">        decision tree regressor trained on the input data [X, y]. &quot;&quot;&quot;</span>
-    
+
     <span class="c1"># Create cross-validation sets from the training data</span>
     <span class="c1"># sklearn version 0.18: ShuffleSplit(n_splits=10, test_size=0.1, train_size=None, random_state=None)</span>
     <span class="c1"># sklearn versiin 0.17: ShuffleSplit(n, n_iter=10, test_size=0.1, train_size=None, random_state=None)</span>
@@ -12526,7 +12523,7 @@ For the <code>fit_model</code> function in the code cell below, you will need to
     <span class="c1">#print (str(X) + &quot; &quot; + str(y))</span>
     <span class="c1"># TODO: Transform &#39;performance_metric&#39; into a scoring function using &#39;make_scorer&#39; </span>
     <span class="n">scoring_fnc</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">performance_metric</span><span class="p">)</span>
-    
+
     <span class="c1"># TODO: Create the grid search cv object --&gt; GridSearchCV()</span>
     <span class="c1"># Make sure to include the right parameters in the object:</span>
     <span class="c1"># (estimator, param_grid, scoring, cv) which have values &#39;regressor&#39;, &#39;params&#39;, &#39;scoring_fnc&#39;, and &#39;cv_sets&#39; respectively.</span>
@@ -12698,7 +12695,7 @@ Minimum price: $105,000.00
 Maximum price: $1,024,800.00
 Mean price: $454,342.94
 Median price $438,900.00
-Standard deviation of prices: $165,171.13 
+Standard deviation of prices: $165,171.13
 
 Predicted selling price for Client 1&#39;s home: $403,025.00
 Predicted selling price for Client 2&#39;s home: $237,478.72
@@ -12819,7 +12816,7 @@ The collected from 1978 data is important to know the inflation rate,  The featu
   </div>
 </body>
 
- 
+
 
 
 </html>

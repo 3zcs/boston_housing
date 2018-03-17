@@ -37,7 +37,7 @@ import visuals as vs
 data = pd.read_csv('housing.csv')
 prices = data['MEDV']
 features = data.drop('MEDV', axis = 1)
-    
+
 # Success
 print ("Boston housing dataset has {} data points with {} variables each.".format(*data.shape))
 ```
@@ -84,7 +84,7 @@ print ("Standard deviation of prices: ${:,.2f}".format(std_price))
 ```
 
     Statistics for Boston housing dataset:
-    
+
     Minimum price: $105,000.00
     Maximum price: $1,024,800.00
     Mean price: $454,342.94
@@ -107,7 +107,7 @@ As a reminder, we are using three features from the Boston housing dataset: `'RM
 * Would you expect a neighborhood that has an `'PTRATIO'` value(ratio of students to teachers) of 10 have home prices be worth more or less than a neighborhood that has an `'PTRATIO'` value of 15?
 
 **Answer: **
-* Q1: Would you expect a home that has an `'RM'` value(number of rooms) of 6 be worth more or less than a home that has an `'RM'` value of 7? 
+* Q1: Would you expect a home that has an `'RM'` value(number of rooms) of 6 be worth more or less than a home that has an `'RM'` value of 7?
     * more, the more room the more price, because there inscrease in the cost and that lead to incrase in the price.
 
 
@@ -116,7 +116,7 @@ As a reminder, we are using three features from the Boston housing dataset: `'RM
 
 
 * Q3: Would you expect a neighborhood that has an `'PTRATIO'` value(ratio of students to teachers) of 10 have home prices be worth more or less than a neighborhood that has an `'PTRATIO'` value of 15?
-    * Yes the less of `'PTRATIO'` mean higher price, because higher number of `'PTRATIO'` mean that the students in the neighborhood more per one teacher and that mean this is cheany neighborhood as the students normaly pay less for homes. 
+    * Yes the less of `'PTRATIO'` mean higher price, because higher number of `'PTRATIO'` mean that the students in the neighborhood more per one teacher and that mean this is cheany neighborhood as the students normaly pay less for homes.
 
 
 ----
@@ -125,7 +125,7 @@ As a reminder, we are using three features from the Boston housing dataset: `'RM
 In this second section of the project, you will develop the tools and techniques necessary for a model to make a prediction. Being able to make accurate evaluations of each model's performance through the use of these tools and techniques helps to greatly reinforce the confidence in your predictions.
 
 ### Implementation: Define a Performance Metric
-It is difficult to measure the quality of a given model without quantifying its performance over training and testing. This is typically done using some type of performance metric, whether it is through calculating some type of error, the goodness of fit, or some other useful measurement. For this project, you will be calculating the [*coefficient of determination*](http://stattrek.com/statistics/dictionary.aspx?definition=coefficient_of_determination), R<sup>2</sup>, to quantify your model's performance. The coefficient of determination for a model is a useful statistic in regression analysis, as it often describes how "good" that model is at making predictions. 
+It is difficult to measure the quality of a given model without quantifying its performance over training and testing. This is typically done using some type of performance metric, whether it is through calculating some type of error, the goodness of fit, or some other useful measurement. For this project, you will be calculating the [*coefficient of determination*](http://stattrek.com/statistics/dictionary.aspx?definition=coefficient_of_determination), R<sup>2</sup>, to quantify your model's performance. The coefficient of determination for a model is a useful statistic in regression analysis, as it often describes how "good" that model is at making predictions.
 
 The values for R<sup>2</sup> range from 0 to 1, which captures the percentage of squared correlation between the predicted and actual values of the **target variable**. A model with an R<sup>2</sup> of 0 is no better than a model that always predicts the *mean* of the target variable, whereas a model with an R<sup>2</sup> of 1 perfectly predicts the target variable. Any value between 0 and 1 indicates what percentage of the target variable, using this model, can be explained by the **features**. _A model can be given a negative R<sup>2</sup> as well, which indicates that the model is **arbitrarily worse** than one that always predicts the mean of the target variable._
 
@@ -139,12 +139,12 @@ For the `performance_metric` function in the code cell below, you will need to i
 from sklearn.metrics import r2_score
 
 def performance_metric(y_true, y_predict):
-    """ Calculates and returns the performance score between 
+    """ Calculates and returns the performance score between
         true and predicted values based on the metric chosen. """
-    
+
     # TODO: Calculate the performance score between 'y_true' and 'y_predict'
     score = r2_score(y_true,y_predict)
-    
+
     # Return the score
     return score
 ```
@@ -173,13 +173,13 @@ print ("Model has a coefficient of determination, R^2, of {:.3f}.".format(score)
     Model has a coefficient of determination, R^2, of 0.923.
 
 
-* Would you consider this model to have successfully captured the variation of the target variable? 
+* Would you consider this model to have successfully captured the variation of the target variable?
 * Why or why not?
 
 ** Hint: **  The R2 score is the proportion of the variance in the dependent variable that is predictable from the independent variable. In other words:
 * R2 score of 0 means that the dependent variable cannot be predicted from the independent variable.
 * R2 score of 1 means the dependent variable can be predicted from the independent variable.
-* R2 score between 0 and 1 indicates the extent to which the dependent variable is predictable. 
+* R2 score between 0 and 1 indicates the extent to which the dependent variable is predictable.
 * R2 score of 0.40 means that 40 percent of the variance in Y is predictable from X.
 
 **Answer:**
@@ -217,8 +217,7 @@ print ("Training and testing split was successful.")
 **Hint:** Think about how overfitting or underfitting is contingent upon how splits on data is done.
 
 **Answer: **
-The benefits to splitting a dataset into some ratio of training and testing subsets for a learning algorithm
-- To Limit problems like overfitting and underfitting, if we use all data as training that will lead to overfitting problem since we'll be very spcific, So, we can use 75% as training and 25% as optimizing, but here come up that quation which 75% of my data should I use, the solation is easy we can change the 25% of our data each time then take the average but what about unseen data?, So, we can use 20% of our data as testing and divieded the rest into 25% optimization, and 75% training then we can change the 25% of our data each time , as you can see we come up with a model more accurate, and we avoid overfitting also we reduce variability.
+The benefits to splitting a dataset into some ratio of training and testing subsets is that we can use some of our data that nuseen from the model to validate how our is good, let's assume that we build out model without testing set, and we optimize our model until it's seemes perfect for this data set, this model will be overfitting, because it's work perfectly with this data, but it's not generalize, how can I make it generalize here the binfits of testing data, if I have unseen data when I optimize my model I use it to see how my model is good.
 
 ----
 
@@ -241,16 +240,16 @@ vs.ModelLearning(features, prices)
 
 
 ### Question 4 - Learning the Data
-* Choose one of the graphs above and state the maximum depth for the model. 
-* What happens to the score of the training curve as more training points are added? What about the testing curve? 
-* Would having more training points benefit the model? 
+* Choose one of the graphs above and state the maximum depth for the model.
+* What happens to the score of the training curve as more training points are added? What about the testing curve?
+* Would having more training points benefit the model?
 
 **Hint:** Are the learning curves converging to particular scores? Generally speaking, the more data you have, the better. But if your training and testing curves are converging with a score above your benchmark threshold, would this be necessary?
 Think about the pros and cons of adding more training points based on if the training and testing curves are converging.
 
 **Answer: **
-The graphs of `max_depth = 3`, when we add more training points the training curve will have small increasing error, and the testing curve will have to decrease in testing error until they have lower converge point and small error. 
-normally by adding more training points the chances of overfitting decrease and because the model becomes more general, for this model I think we'll continue to get a little converge and diverge point since when the number of training points reach 300 we about to get small effect each time. 
+The graphs of `max_depth = 3`, when we add more training points the training curve will have small increasing error, and the testing curve will have to decrease in testing error until they have lower converge point and small error.
+normally by adding more training points the chances of overfitting decrease and because the model becomes more general, for this model I think we'll continue to get a little converge and diverge point since when the number of training points reach 300 we about to get small effect each time.
 
 ### Complexity Curves
 The following code cell produces a graph for a decision tree model that has been trained and validated on the training data using different maximum depths. The graph produces two complexity curves — one for training and one for validation. Similar to the **learning curves**, the shaded regions of both the complexity curves denote the uncertainty in those curves, and the model is scored on both the training and validation sets using the `performance_metric` function.  
@@ -267,18 +266,18 @@ vs.ModelComplexity(X_train, y_train)
 
 
 ### Question 5 - Bias-Variance Tradeoff
-* When the model is trained with a maximum depth of 1, does the model suffer from high bias or from high variance? 
+* When the model is trained with a maximum depth of 1, does the model suffer from high bias or from high variance?
 * How about when the model is trained with a maximum depth of 10? What visual cues in the graph justify your conclusions?
 
 **Hint:** High bias is a sign of underfitting(model is not complex enough to pick up the nuances in the data) and high variance is a sign of overfitting(model is by-hearting the data and cannot generalize well). Think about which model(depth 1 or 10) aligns with which part of the tradeoff.
 
 **Answer: **
 - with a maximum depth of 1 the model suffers from high bias where training and testing error coverage are high which came from oversimplifying the problem this is lead to bad fit and bad generaliztion, also this modle cannot represent the corrlation of the modle.
-- with a maximum depth of 10 the model suffers from high variance and there is will be a high testing error this is gives us a gap between training and testing error, high variance came from overfiting the problem and the model being complex. 
-- finally we can say ideal curve that curve came between them, that has a small gap between training and testing error, generalize, as we add new data it fits. 
+- with a maximum depth of 10 the model suffers from high variance and there is will be a high testing error this is gives us a gap between training and testing error, high variance came from overfiting the problem and the model being complex.
+- finally we can say ideal curve that curve came between them, that has a small gap between training and testing error, generalize, as we add new data it fits.
 
 ### Question 6 - Best-Guess Optimal Model
-* Which maximum depth do you think results in a model that best generalizes to unseen data? 
+* Which maximum depth do you think results in a model that best generalizes to unseen data?
 * What intuition lead you to this answer?
 
 ** Hint: ** Look at the graph above Question 5 and see where the validation scores lie for the various depths that have been assigned to the model. Does it get better with increased depth? At what point do we get our best validation score without overcomplicating our model? And remember, Occams Razor states "Among competing hypotheses, the one with the fewest assumptions should be selected."
@@ -299,14 +298,14 @@ In this final section of the project, you will construct a model and make a pred
 ** Hint: ** When explaining the Grid Search technique, be sure to touch upon why it is used,  what the 'grid' entails and what the end goal of this method is. To solidify your answer, you can also give an example of a parameter in a model that can be optimized using this approach.
 
 **Answer: **
-grid search technique is that technique used to evaluate different models(different parameters) you have and help you to select the best one. 
+grid search technique is that technique used to evaluate different models(different parameters) you have and help you to select the best one.
 it can be applied to optimize a learning algorithm since you get a feedback for your models, and then find the best hyperparameters to optimize the algorithm.
 it takes an estimator (a regressor or a classifier), a parameter space (a dictionary of hyperparameters that contain parameter names with array of values to try), a method for searching or sampling candidates, cross-validation scheme; and a score function. then we'll get a best estimator which has the 'best' combination of given parameters.
-as we can see we use gridSearch to tune hyper-parameters. 
+as we can see we use gridSearch to tune hyper-parameters.
 
 ### Question 8 - Cross-Validation
 
-* What is the k-fold cross-validation training technique? 
+* What is the k-fold cross-validation training technique?
 
 * What benefit does this technique provide for grid search when optimizing a model?
 
@@ -315,7 +314,7 @@ as we can see we use gridSearch to tune hyper-parameters.
 When thinking about how k-fold cross validation helps grid search, think about the main drawbacks of grid search which are hinged upon **using a particular subset of data for training or testing** and how k-fold cv could help alleviate that. You can refer to the [docs](http://scikit-learn.org/stable/modules/cross_validation.html#cross-validation) for your answer.
 
 **Answer: **
-k-fold cross-validation training technique is that technique break our data to K buckets, then we use 1 fold as cross-validation and k-1 fold as training data, and each time we use different buckets as a testing set then we get the average as a final result for the model. 
+k-fold cross-validation training technique is that technique break our data to K buckets, then we use 1 fold as cross-validation and k-1 fold as training data, and each time we use different buckets as a testing set then we get the average as a final result for the model.
 The benefit of this technique helps us to identify whether out model is generalized to an independent data set, also we can estimate how accurate our model is by validating the predicted result, another thing that recycling our data in this technique help us avoid throwing some useful data while we separate or data as into validation and training sets.
 
 ### Implementation: Fitting a Model
@@ -332,7 +331,7 @@ For the `fit_model` function in the code cell below, you will need to implement 
   - Pass the `performance_metric` function as a parameter to the object.
   - Assign this scoring function to the `'scoring_fnc'` variable.
 - Use [`GridSearchCV`](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html) from `sklearn.grid_search` to create a grid search object.
-  - Pass the variables `'regressor'`, `'params'`, `'scoring_fnc'`, and `'cv_sets'` as parameters to the object. 
+  - Pass the variables `'regressor'`, `'params'`, `'scoring_fnc'`, and `'cv_sets'` as parameters to the object.
   - Assign the `GridSearchCV` object to the `'grid'` variable.
 
 
@@ -342,9 +341,9 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import make_scorer
 from sklearn.model_selection import GridSearchCV
 def fit_model(X, y):
-    """ Performs grid search over the 'max_depth' parameter for a 
+    """ Performs grid search over the 'max_depth' parameter for a
         decision tree regressor trained on the input data [X, y]. """
-    
+
     # Create cross-validation sets from the training data
     # sklearn version 0.18: ShuffleSplit(n_splits=10, test_size=0.1, train_size=None, random_state=None)
     # sklearn versiin 0.17: ShuffleSplit(n, n_iter=10, test_size=0.1, train_size=None, random_state=None)
@@ -371,9 +370,9 @@ def fit_model(X, y):
     '''
 
     #print (str(X) + " " + str(y))
-    # TODO: Transform 'performance_metric' into a scoring function using 'make_scorer' 
+    # TODO: Transform 'performance_metric' into a scoring function using 'make_scorer'
     scoring_fnc = make_scorer(performance_metric)
-    
+
     # TODO: Create the grid search cv object --> GridSearchCV()
     # Make sure to include the right parameters in the object:
     # (estimator, param_grid, scoring, cv) which have values 'regressor', 'params', 'scoring_fnc', and 'cv_sets' respectively.
@@ -421,8 +420,8 @@ Imagine that you were a real estate agent in the Boston area looking to use this
 | Neighborhood poverty level (as %) | 17% | 32% | 3% |
 | Student-teacher ratio of nearby schools | 15-to-1 | 22-to-1 | 12-to-1 |
 
-* What price would you recommend each client sell his/her home at? 
-* Do these prices seem reasonable given the values for the respective features? 
+* What price would you recommend each client sell his/her home at?
+* Do these prices seem reasonable given the values for the respective features?
 
 **Hint:** Use the statistics you calculated in the **Data Exploration** section to help justify your response.  Of the three clients, client 3 has has the biggest house, in the best public school neighborhood with the lowest poverty level; while client 2 has the smallest house, in a neighborhood with a relatively high poverty rate and not the best public schools.
 
@@ -449,13 +448,13 @@ for i, price in enumerate(reg.predict(client_data)):
 ```
 
     Statistics for Boston housing dataset:
-    
+
     Minimum price: $105,000.00
     Maximum price: $1,024,800.00
     Mean price: $454,342.94
     Median price $438,900.00
-    Standard deviation of prices: $165,171.13 
-    
+    Standard deviation of prices: $165,171.13
+
     Predicted selling price for Client 1's home: $403,025.00
     Predicted selling price for Client 2's home: $237,478.72
     Predicted selling price for Client 3's home: $931,636.36
@@ -467,7 +466,7 @@ Client 2 has 4 rooms which mean small house, with 32 percent poverty rate which 
 Client 3 has 8 rooms which mean very big house, with 3 percent poverty rate which also indicate that the neighborhood is great, with 12-to-1 Student per teacher ratio of nearby schools, It's really good public schools, all that lead us to find that this house in good and has a great features, so the price Maximum and the mean, 931,636.36 usd is fair for house with this features.
 
 ### Sensitivity
-An optimal model is not necessarily a robust model. Sometimes, a model is either too complex or too simple to sufficiently generalize to new data. Sometimes, a model could use a learning algorithm that is not appropriate for the structure of the data given. Other times, the data itself could be too noisy or contain too few samples to allow a model to adequately capture the target variable — i.e., the model is underfitted. 
+An optimal model is not necessarily a robust model. Sometimes, a model is either too complex or too simple to sufficiently generalize to new data. Sometimes, a model could use a learning algorithm that is not appropriate for the structure of the data given. Other times, the data itself could be too noisy or contain too few samples to allow a model to adequately capture the target variable — i.e., the model is underfitted.
 
 **Run the code cell below to run the `fit_model` function ten times with different training and testing sets to see how the prediction for a specific client changes with respect to the data it's trained on.**
 
@@ -486,7 +485,7 @@ vs.PredictTrials(features, prices, fit_model, client_data)
     Trial 8: $407,232.00
     Trial 9: $351,577.61
     Trial 10: $413,700.00
-    
+
     Range in prices: $73,357.39
 
 
